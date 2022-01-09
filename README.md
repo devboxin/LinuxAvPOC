@@ -50,10 +50,6 @@ clamscan  --suppress-ok-results  --recursive
 3. sudo clamscan --infected --remove --recursive ~/home/XXX-USER/infectedfolder/
 ```
 
-More resource - create a cron job for running virus scanning automatically
-https://www.techrepublic.com/article/how-to-install-and-use-clamav-on-ubuntu-server-20-04/
-
-https://www.rapidspike.com/blog/how-to-send-log-files-to-aws-cloudwatch-ubuntu/
 **
 How to set ClamAV to scan automatically?**
 Now we'll create a bash script that will scan the /home/ubuntu/infectedfolder directory and then create a cron job to run it everyday. 
@@ -128,3 +124,8 @@ sudo service amazon-cloudwatch-agent restart
 	Logs for debugging
 cat /var/log/amazon/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log
 
+
+More resource - create a cron job for running virus scanning automatically
+https://www.techrepublic.com/article/how-to-install-and-use-clamav-on-ubuntu-server-20-04/
+
+https://www.rapidspike.com/blog/how-to-send-log-files-to-aws-cloudwatch-ubuntu/
