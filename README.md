@@ -1,5 +1,5 @@
 # LinuxAvPOC
-Anti virus for Linux server and detail report in AWS CloudWatch
+Antivirus for Linux server and detailed report in AWS CloudWatch.
 
 Here our end goal is to create a cron job which scans the whole system or whatever the directory you want to scan. Once the scan is done it will send the scan report to AWS cloudwatch. And if the malware is detected then CloudWatch will instantiate the Alarm.
 
