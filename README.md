@@ -5,6 +5,7 @@ Here our end goal is to create a cron job which scans the whole system or whatev
 
 Open Source cross platform AV: ClamAV - supported by Cisco
 Website: https://www.clamav.net/
+
 **Install Clam AV on Linux**
 ```
 1. sudo apt update
@@ -50,8 +51,8 @@ clamscan  --suppress-ok-results  --recursive
 3. sudo clamscan --infected --remove --recursive ~/home/XXX-USER/infectedfolder/
 ```
 
-**
-How to set ClamAV to scan automatically?**
+**How to set ClamAV to scan automatically?**
+
 Now we'll create a bash script that will scan the /home/ubuntu/infectedfolder directory and then create a cron job to run it everyday. 
 
 **vim /home/ubuntu/clamscan_daily.sh**
@@ -87,15 +88,21 @@ At the bottom of the file, add the following line to run the scan every day at 1
 Add Logs into AWS CloudWatch 
 	If you have already installed aws cloudwatch agent then you can skip this steps 
 
-Download & Install
+**Download & Install**
+```
 wget https://s3.us-west-1.amazonaws.com/amazoncloudwatch-agent-us-west-1/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
 sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
+```
 
-Setup with existing configuration
+**Setup with existing configuration**
+```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+```
 
-Manually edit configuration json
+**Manually edit configuration json**
+
 sudo nano /opt/aws/amazon-cloudwatch-agent/bin/config.json	(Verify logs json has timezone property)
+
 ```
 {
      "agent": {
@@ -116,16 +123,24 @@ sudo nano /opt/aws/amazon-cloudwatch-agent/bin/config.json	(Verify logs json has
      }
  }
 ```
-Start service with updated configuration json
+
+**Start service with updated configuration json**
+```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json
 
-sudo service amazon-cloudwatch-agent restart
 
-	Logs for debugging
+sudo service amazon-cloudwatch-agent restart
+```
+
+**Logs for debugging**
+```
 cat /var/log/amazon/amazon-cloudwatch-agent/amazon-cloudwatch-agent.log
+
+```
 
 
 More resource - create a cron job for running virus scanning automatically
+
 https://www.techrepublic.com/article/how-to-install-and-use-clamav-on-ubuntu-server-20-04/
 
 https://www.rapidspike.com/blog/how-to-send-log-files-to-aws-cloudwatch-ubuntu/
