@@ -12,25 +12,28 @@ Website: https://www.clamav.net/
 2. sudo apt-get install clamav clamav-daemon -y
 ```
 After the installation is complete, you'll need to stop the daemon, so you can update the ClamAV database manually. Stop the daemon with the command:
- sudo systemctl stop clamav-freshclam
+ 
 ```
+#Stop Clamav
+sudo systemctl stop clamav-freshclam
 #update clam
 sudo freshclam 
 # if daemon not started automatically
 sudo systemctl start clamav-freshclam 
 ```
-**Manual database update steps:**
+**Manual database update steps:(Optional Step)**
 ```
 -- sudo wget https://database.clamav.net/daily.cvd # get daily database update
 -- sudo cp daily.cvd /var/lib/clamav/
 ```
-**Test commands**
+**Test clamscan with the below commands**
 ```
-sudo clamscan --infected --detect-pua=yes --recursive /home/XXX-USER/Downloads/
-```
-**Full Scan**
+sudo clamscan --infected --detect-pua=yes --recursive pathOfDirectoryToScan
 ```
 
+**Full Scan**
+
+```
 sudo clamscan \
   --suppress-ok-results \
   --recursive \
@@ -39,10 +42,6 @@ sudo clamscan \
   /
 ```
 
-**Local Recursive Scan**
-```
-clamscan  --suppress-ok-results  --recursive  
- ```
  
 **Test using a sample malware file (**https://www.eicar.org/?page_id=3950**)**
 ```
@@ -50,6 +49,12 @@ clamscan  --suppress-ok-results  --recursive
 2. mv eicar.com ~/home/XXX-USER/infectedfolder/
 3. sudo clamscan --infected --remove --recursive ~/home/XXX-USER/infectedfolder/
 ```
+
+
+**Local Recursive Scan**
+```
+clamscan  --suppress-ok-results  --recursive  
+ ```
 
 **How to set ClamAV to scan automatically?**
 
