@@ -85,7 +85,7 @@ Give that file executable permissions with the command:
 sudo chmod u+x /home/ubuntu/clamscan_daily.sh
 
 Create the cron job with the command:
-	sudo crontab -e
+```sudo crontab -e ```
 At the bottom of the file, add the following line to run the scan every day at 1 am:
 ```
 1 1 * * * sudo /bin/bash /home/ubuntu/clamscan_daily.sh > /dev/null 2>&1
